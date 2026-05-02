@@ -17,10 +17,10 @@ const DESTINATION_EMAIL = process.env.DESTINATION_EMAIL || 'reganhgross@gmail.co
 
 // Configure your email transport (example uses Gmail)
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: 'smtp.sendgrid.net',
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
+    user: "apikey",
+    pass: process.env.SENDGRID_API,
   },
 });
 
@@ -42,6 +42,7 @@ app.post(
         from: process.env.EMAIL_USER,
         to: DESTINATION_EMAIL,
         subject: 'New Contact Form Submission',
+        replyTo: email,
         text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
       });
       res.status(200).json({ message: 'Email sent successfully' });
