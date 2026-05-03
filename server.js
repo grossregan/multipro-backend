@@ -28,7 +28,7 @@ app.use(express.json());
 // Configure your email transport (SendGrid)
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST || 'smtp.sendgrid.net',
-  port: 587,
+  port: 2525,
   auth: {
     user: "apikey",
     pass: process.env.SENDGRID_API_KEY,
