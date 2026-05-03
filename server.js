@@ -9,14 +9,20 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 5050;
 
-app.use(cors({
-  origin: [
+const corsOptions = {
+origin: [
     'https://multipro-frontend-two.vercel.app/', //vercel deployment
     'http://localhost:5173' //local development
   ],
-  methods: ['GET', 'POST'],
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
-}));
+  optionsSuccessStatus: 200,
+};
+
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // Enable pre-flight for all routes
 app.use(express.json());
 
 // Configure your email transport (SendGrid)
