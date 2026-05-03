@@ -12,15 +12,13 @@ const PORT = process.env.PORT || 5050;
 app.use(cors());
 app.use(express.json());
 
-// Replace with your destination email
-const DESTINATION_EMAIL = process.env.DESTINATION_EMAIL || 'reganhgross@gmail.com';
-
-// Configure your email transport (example uses Gmail)
+// Configure your email transport (SendGrid)
 const transporter = nodemailer.createTransport({
-  host: 'smtp.sendgrid.net',
+  host: process.env.SMTP_HOST || 'smtp.sendgrid.net',
+  port: 587,
   auth: {
     user: "apikey",
-    pass: process.env.SENDGRID_API,
+    pass: process.env.SENDGRID_API_KEY,
   },
 });
 
@@ -39,8 +37,8 @@ app.post(
     const { name, email, message } = req.body;
     try {
       await transporter.sendMail({
-        from: process.env.EMAIL_USER,
-        to: DESTINATION_EMAIL,
+        from: process.env.EMAIL_FROM,
+        to: process.env.EMAIL_TO,
         subject: 'New Contact Form Submission',
         replyTo: email,
         text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
