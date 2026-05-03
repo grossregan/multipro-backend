@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 5050;
 
 const corsOptions = {
 origin: [
-    'https://multipro-frontend-two.vercel.app/', //vercel deployment
+    'https://multipro-frontend-two.vercel.app', //vercel deployment
     'http://localhost:5173' //local development
   ],
   methods: ['GET', 'POST', 'OPTIONS'],
