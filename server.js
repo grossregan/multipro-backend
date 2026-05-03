@@ -9,7 +9,14 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 5050;
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    'https://multipro-frontend-two.vercel.app/', //vercel deployment
+    'http://localhost:5173' //local development
+  ],
+  methods: ['GET', 'POST'],
+  credentials: true,
+}));
 app.use(express.json());
 
 // Configure your email transport (SendGrid)
