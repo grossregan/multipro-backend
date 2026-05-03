@@ -45,6 +45,7 @@ app.post(
       });
       res.status(200).json({ message: 'Email sent successfully' });
     } catch (err) {
+      console.error('Email send failed:', err);
       res.status(500).json({ error: 'Failed to send email' });
     }
   }
