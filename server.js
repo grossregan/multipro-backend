@@ -13,7 +13,7 @@ const corsOptions = {
 origin: [
     'https://multipro-frontend-two.vercel.app', //vercel deployment
     'http://localhost:5173', //local development
-    'https://multipromn.com/' //live site
+    'https://multipromn.com' //live site
   ],
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
